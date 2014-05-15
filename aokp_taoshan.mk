@@ -12,27 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+# Common Sony Resources
+$(call inherit-product, device/sony/common/resources.mk)
+
+# Inherit GSM common stuff
+$(call inherit-product, vendor/aokp/configs/gsm.mk)
+
+# Inherit common product files.
+$(call inherit-product, vendor/aokp/configs/common.mk)
+
+# Inherit Device Specific
 $(call inherit-product, device/sony/taoshan/taoshan.mk)
-
-
-# Inherit CM common GSM stuff.
-$(call inherit-product, vendor/cm/config/gsm.mk)
-
-# Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
-
-# Inherit CM common Phone stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 TARGET_SCREEN_HEIGHT := 854
 TARGET_SCREEN_WIDTH := 480
 
-# Build fingerprints
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=C2105_1275-0241 BUILD_FINGERPRINT=Sony/C2105_1275-0241/C2105:4.2.2/15.3.A.0.26/Android.0031:user/release-keys PRIVATE_BUILD_DESC="C2105-user 4.2.2 JDQ39 Android.0031 test-keys"
 
+
+PRODUCT_NAME := aokp_taoshan
 PRODUCT_DEVICE := taoshan
-PRODUCT_NAME := cm_taoshan
 PRODUCT_BRAND := Sony
 PRODUCT_MODEL := C2105
 PRODUCT_MANUFACTURER := Sony
